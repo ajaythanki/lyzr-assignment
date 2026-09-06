@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-parch text-ink font-sans;
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(201, 106, 90, 0.22);
+}
+
+:focus-visible {
+  outline: 2px solid #c96a5a;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-wrap px-7;
+  }
+
+  .eyebrow {
+    @apply mb-5 inline-block text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-rose;
+  }
+
+  .lead {
+    @apply max-w-[46ch] text-[clamp(1.1rem,1.5vw,1.28rem)] font-light leading-[1.6] text-muted;
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-full border border-transparent px-[22px] py-[13px] text-[0.93rem] font-medium transition-all duration-500 ease-out;
+  }
+  .btn:hover {
+    @apply -translate-y-0.5;
+  }
+  .btn-primary {
+    @apply bg-rose text-white shadow-soft;
+  }
+  .btn-primary:hover {
+    background: #bd5f50;
+  }
+  .btn-ghost {
+    @apply border-line bg-transparent text-ink;
+  }
+  .btn-ghost:hover {
+    @apply border-mahogany;
+  }
+  .btn-dark {
+    @apply bg-fg text-d0;
+  }
+  .btn-dark:hover {
+    @apply bg-white;
+  }
+  .btn-outline {
+    @apply border-white/15 bg-transparent text-fg;
+  }
+  .btn-outline:hover {
+    @apply border-white/60;
+  }
+
+  .arw {
+    @apply transition-transform duration-500 ease-out;
+  }
+  .btn:hover .arw {
+    @apply translate-x-1;
+  }
+
+  .section {
+    @apply py-[clamp(76px,10vw,130px)];
+  }
+  .display-1 {
+    @apply text-balance text-[clamp(2.7rem,5.2vw,4.35rem)] font-light leading-[1.03] tracking-[-0.032em];
+  }
+  .display-2 {
+    @apply text-balance text-[clamp(2rem,3.7vw,2.95rem)] font-light leading-[1.08] tracking-[-0.03em];
+  }
+  .em {
+    @apply font-serif font-normal italic;
+  }
+}
