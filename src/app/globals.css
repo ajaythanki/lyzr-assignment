@@ -7,84 +7,118 @@ html {
 }
 
 body {
-  @apply bg-parch text-ink font-sans;
-  font-weight: 400;
-  line-height: 1.7;
+  @apply bg-paper text-ink font-sans;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgba(201, 106, 90, 0.22);
+  background: #c96a5a;
+  color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid #c96a5a;
+  outline: 2px solid #231712;
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
 @layer components {
   .wrap {
-    @apply mx-auto w-full max-w-wrap px-7;
+    @apply mx-auto w-full max-w-wrap px-6 md:px-10;
   }
 
-  .eyebrow {
-    @apply mb-5 inline-block text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-rose;
+  /* Monospace eyebrow / annotation */
+  .label {
+    @apply font-mono text-[0.7rem] font-medium uppercase tracking-[0.2em] text-graphite;
   }
 
-  .lead {
-    @apply max-w-[46ch] text-[clamp(1.1rem,1.5vw,1.28rem)] font-light leading-[1.6] text-muted;
+  /* Section marker row: index + title + hairline */
+  .marker {
+    @apply flex items-center gap-4 border-t border-ink pt-4 font-mono text-[0.72rem] uppercase tracking-[0.16em];
+  }
+  .marker .idx {
+    @apply text-rose;
+  }
+  .marker .fill {
+    @apply h-px flex-1 bg-line;
   }
 
+  /* Headings */
+  .h-hero {
+    @apply font-sans font-bold leading-[0.98] tracking-[-0.04em] text-[clamp(2.6rem,6vw,4.7rem)];
+    text-wrap: balance;
+  }
+  .h-sec {
+    @apply font-sans font-semibold leading-[1.04] tracking-[-0.03em] text-[clamp(1.9rem,3.6vw,2.95rem)];
+    text-wrap: balance;
+  }
+
+  /* Buttons — squared, technical */
   .btn {
-    @apply inline-flex items-center gap-2 rounded-full border border-transparent px-[22px] py-[13px] text-[0.93rem] font-medium transition-all duration-500 ease-out;
+    @apply inline-flex items-center gap-2 rounded-[6px] px-5 py-3 text-[0.85rem] font-medium transition-all duration-300 ease-out;
   }
-  .btn:hover {
-    @apply -translate-y-0.5;
+  .btn-solid {
+    @apply bg-ink text-paper;
   }
-  .btn-primary {
-    @apply bg-rose text-white shadow-soft;
+  .btn-solid:hover {
+    @apply -translate-y-0.5 bg-rose;
   }
-  .btn-primary:hover {
-    background: #bd5f50;
+  .btn-line {
+    @apply border border-ink/25 text-ink;
   }
-  .btn-ghost {
-    @apply border-line bg-transparent text-ink;
+  .btn-line:hover {
+    @apply border-ink;
   }
-  .btn-ghost:hover {
-    @apply border-mahogany;
+  .btn-onDark {
+    @apply bg-rose text-white;
   }
-  .btn-dark {
-    @apply bg-fg text-d0;
+  .btn-onDark:hover {
+    @apply -translate-y-0.5 bg-rosed;
   }
-  .btn-dark:hover {
-    @apply bg-white;
-  }
-  .btn-outline {
-    @apply border-white/15 bg-transparent text-fg;
-  }
-  .btn-outline:hover {
-    @apply border-white/60;
-  }
-
   .arw {
-    @apply transition-transform duration-500 ease-out;
+    @apply transition-transform duration-300 ease-out;
   }
   .btn:hover .arw {
     @apply translate-x-1;
   }
 
-  .section {
-    @apply py-[clamp(76px,10vw,130px)];
+  /* Faint blueprint grid */
+  .grid-faint {
+    background-image: linear-gradient(#2317120a 1px, transparent 1px),
+      linear-gradient(90deg, #2317120a 1px, transparent 1px);
+    background-size: 34px 34px;
   }
-  .display-1 {
-    @apply text-balance text-[clamp(2.7rem,5.2vw,4.35rem)] font-light leading-[1.03] tracking-[-0.032em];
+}
+
+/* Diagram flow */
+@keyframes flow {
+  to {
+    stroke-dashoffset: -16;
   }
-  .display-2 {
-    @apply text-balance text-[clamp(2rem,3.7vw,2.95rem)] font-light leading-[1.08] tracking-[-0.03em];
+}
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.5;
   }
-  .em {
-    @apply font-serif font-normal italic;
+  50% {
+    opacity: 1;
+  }
+}
+.flow {
+  stroke-dasharray: 2 6;
+  animation: flow 0.9s linear infinite;
+}
+.glow {
+  animation: glow 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow,
+  .glow {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
   }
 }

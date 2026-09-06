@@ -3,30 +3,28 @@ import { footerColumns } from "@/lib/content";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-d0 pb-[34px] pt-[66px] text-fg/60">
-      <div className="wrap">
-        <div className="mb-[52px] grid gap-10 md:grid-cols-2 lg:grid-cols-[1.6fr_repeat(3,1fr)]">
-          <div>
-            <Brand className="mb-3.5 text-fg" />
-            <p className="max-w-[32ch] text-[0.95rem] text-fg/60">
-              The control plane for agent productionization — governed, observed, and controlled from one place.
-            </p>
+    <footer className="bg-d0 text-fg/60">
+      <div className="wrap grid gap-10 py-16 md:grid-cols-[1.5fr_repeat(3,1fr)]">
+        <div>
+          <Brand dark />
+          <p className="mt-4 max-w-[30ch] font-mono text-[0.75rem] leading-relaxed tracking-[0.02em] text-fg/50">
+            One control plane for every agent you run.
+          </p>
+        </div>
+        {footerColumns.map((col) => (
+          <div key={col.title}>
+            <h4 className="label mb-4 text-fg/45">{col.title}</h4>
+            {col.links.map((link) => (
+              <a key={link} href="#" className="block py-1.5 text-[0.9rem] text-fg/60 transition-colors hover:text-fg">
+                {link}
+              </a>
+            ))}
           </div>
-          {footerColumns.map((col) => (
-            <div key={col.title}>
-              <h4 className="mb-[18px] text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-rosem">{col.title}</h4>
-              {col.links.map((link) => (
-                <a key={link} href="#" className="block py-1.5 text-[0.93rem] text-fg/60 transition-colors hover:text-fg">
-                  {link}
-                </a>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-[26px] text-[0.84rem] text-fg/60">
-          <span>© 2026 Lyzr — concept redesign, not affiliated.</span>
-          <span className="font-medium text-rosem">Reimagined by Ajay Thanki</span>
-        </div>
+        ))}
+      </div>
+      <div className="wrap flex flex-wrap items-center justify-between gap-3 border-t border-white/10 py-6 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-fg/45">
+        <span>© 2026 Lyzr — concept redesign</span>
+        <span className="text-rose">Reimagined by Ajay Thanki</span>
       </div>
     </footer>
   );

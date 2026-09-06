@@ -1,7 +1,12 @@
-export default function Brand({ className = "" }: { className?: string }) {
+export default function Brand({ dark = false }: { dark?: boolean }) {
   return (
-    <a href="#top" className={`flex items-center gap-2 text-[1.32rem] font-semibold tracking-tight ${className}`}>
-      <span className="h-[22px] w-[22px] rotate-45 rounded-md bg-gradient-to-br from-rose to-mahogany" />
+    <a
+      href="#top"
+      className={`inline-flex items-center gap-2.5 text-[1.25rem] font-bold tracking-tight ${dark ? "text-fg" : "text-ink"}`}
+    >
+      <span className="grid h-6 w-6 place-items-center rounded-[5px] bg-rose text-[0.72rem] font-bold text-white">
+        L
+      </span>
       lyzr
     </a>
   );

@@ -1,19 +1,23 @@
 import type { Product } from "@/lib/content";
 
 export default function ProductCard({ kw, title, body, cta, feature, dark }: Product) {
+  const onDark = dark || feature;
   const base =
-    "flex min-h-[210px] flex-col rounded-[22px] border p-7 transition-all duration-500 ease-out hover:-translate-y-[3px] hover:shadow-lift";
-  const theme = dark ? "border-transparent bg-d0 text-fg" : "border-line2 bg-white hover:border-rose/40";
-  const span = feature ? "sm:col-span-2 bg-gradient-to-br from-white to-[#faf3f0]" : "";
+    "group flex min-h-[190px] flex-col rounded-[8px] border p-6 transition-all duration-300 ease-out hover:-translate-y-1";
+  const theme = dark
+    ? "border-transparent bg-d0 text-fg"
+    : feature
+      ? "border-transparent bg-ink text-fg sm:col-span-2"
+      : "border-line bg-paper hover:border-ink";
 
   return (
-    <article className={`${base} ${theme} ${span}`}>
-      <span className={`mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.16em] ${dark ? "text-rosem" : "text-subtle"}`}>
-        {kw}
+    <article className={`${base} ${theme}`}>
+      <span className={`label ${onDark ? "text-rose" : ""}`}>{kw}</span>
+      <h3 className={`mt-4 text-[1.35rem] font-semibold tracking-[-0.015em] ${onDark ? "text-fg" : ""}`}>{title}</h3>
+      <p className={`mt-2 text-[0.95rem] ${onDark ? "text-fg/65" : "text-graphite"}`}>{body}</p>
+      <span className="mt-auto flex items-center gap-1.5 pt-5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-rose">
+        {cta} <span className="transition-transform group-hover:translate-x-1">→</span>
       </span>
-      <h3 className="mb-2.5 text-[1.32rem] font-medium tracking-[-0.018em]">{title}</h3>
-      <p className={`text-[0.96rem] ${dark ? "text-fg/60" : "text-muted"}`}>{body}</p>
-      <span className={`mt-auto pt-[18px] text-[0.86rem] font-semibold ${dark ? "text-rosem" : "text-rose"}`}>{cta}</span>
     </article>
   );
 }
